@@ -35,10 +35,10 @@ class KNN_D:
         
     def calc_distance_euclidean(self, to_pred_values):
         diff = np.abs(self.X - to_pred_values)
-        distances = np.sqrt(np.sum(diff ** 2, axis=1))
+        distances = np.sqrt(np.sum(diff ** 2, axis=1))  
         return distances
 
-    def calc_distance_manhatten(self, to_pred_values):
+    def calc_distance_manhattan(self, to_pred_values):
         diff = np.abs(self.X - to_pred_values)
         distances = np.sum(diff, axis=1)
         return distances
