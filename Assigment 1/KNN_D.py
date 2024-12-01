@@ -32,6 +32,8 @@ class KNN_D:
             return self.calc_distance_euclidean(to_pred_values)
         elif self.dcalc == 'manhattan':
             return self.calc_distance_manhattan(to_pred_values)
+        elif self.dcalc == 'chebyshev':
+            return self.calc_distance_chebyshev(to_pred_values)
         
     def calc_distance_euclidean(self, to_pred_values):
         diff = np.abs(self.X - to_pred_values)
@@ -42,6 +44,9 @@ class KNN_D:
         diff = np.abs(self.X - to_pred_values)
         distances = np.sum(diff, axis=1)
         return distances
+    
+    def calc_distance_chebyshev(self, to_pred_values):
+        return np.max(np.abs(self.X - to_pred_values), axis=1)
     
 
 
