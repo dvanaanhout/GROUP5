@@ -24,7 +24,6 @@ class KNN_D:
             closest_labels = self.y[closest_indices]
             prediction = st.mode(closest_labels)[0]
             predictions.append(prediction)
-        
         return predictions
     
     def calc_distance(self, to_pred_values):
