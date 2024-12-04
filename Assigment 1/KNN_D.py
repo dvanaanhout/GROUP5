@@ -3,8 +3,6 @@ import numpy as np
 import pandas as pd
 from scipy import stats as st
 
-
-    
 class KNN_D:
     def __init__(self, n_neighbors=5 , dcalc = 'euclidean' ):
         self.n_neighbors = n_neighbors
@@ -24,7 +22,6 @@ class KNN_D:
             closest_labels = self.y[closest_indices]
             prediction = st.mode(closest_labels)[0]
             predictions.append(prediction)
-        
         return predictions
     
     def calc_distance(self, to_pred_values):
