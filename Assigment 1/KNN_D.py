@@ -3,8 +3,6 @@ import numpy as np
 import pandas as pd
 from scipy import stats as st
 
-
-    
 class KNN_D:
     def __init__(self, n_neighbors=5 , dcalc = 'euclidean' ):
         self.n_neighbors = n_neighbors
