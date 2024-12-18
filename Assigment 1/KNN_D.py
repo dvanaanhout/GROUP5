@@ -4,9 +4,10 @@ import pandas as pd
 from scipy import stats as st
 
 class KNN_D:
-    def __init__(self, n_neighbors=5 , dcalc = 'euclidean' ):
+    def __init__(self, n_neighbors=5 , dcalc = 'euclidean', p=2 ):
         self.n_neighbors = n_neighbors
         self.dcalc = dcalc
+        self.p = p
 
     def fit(self, X, y):
         self.X = X.to_numpy()  
@@ -31,7 +32,14 @@ class KNN_D:
             return self.calc_distance_manhattan(to_pred_values)
         elif self.dcalc == 'chebyshev':
             return self.calc_distance_chebyshev(to_pred_values)
+        elif self.dcalc == 'minkowski':
+            return self.calc_distance_minkowski(to_pred_values)
+        elif self.dcalc == 'general':
+            return self.calc_distance_general(to_pred_values)
         
+    def calc_distance_general(self, to_pred_values):
+        return np.sum(np.abs(self.X - to_pred_values), axis=1)
+    
     def calc_distance_euclidean(self, to_pred_values):
         diff = np.abs(self.X - to_pred_values)
         distances = np.sqrt(np.sum(diff ** 2, axis=1))  
@@ -45,7 +53,10 @@ class KNN_D:
     def calc_distance_chebyshev(self, to_pred_values):
         return np.max(np.abs(self.X - to_pred_values), axis=1)
     
-
+    def calc_distance_minkowski(self, to_pred_values):
+        diff = np.abs(self.X - to_pred_values)
+        distances = np.power(np.sum(np.power(diff, self.p), axis=1), 1/self.p)
+        return distances
 
     
 
