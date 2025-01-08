@@ -18,11 +18,11 @@ class KNN_D:
         predictions = []
         
         for i in range(len(to_pred_np)):
-            print(f'{i} {len(to_pred_np)}')
+            
             distances = self.calc_distance(to_pred_np[i])
             closest_indices = np.argsort(distances)[:self.n_neighbors]
             closest_labels = self.y[closest_indices]
-            prediction = st.mode(closest_labels)[0]
+            prediction = np.mean(closest_labels)
             predictions.append(prediction)
         return predictions
     
