@@ -4,7 +4,7 @@ import pandas as pd
 from scipy import stats as st
 
 class KNN_D:
-    def __init__(self, n_neighbors=5 , dcalc = 'euclidean', p=2 ):
+    def __init__(self, n_neighbors=5 , dcalc = 'manhattan', p=2 ):
         self.n_neighbors = n_neighbors
         self.dcalc = dcalc
         self.p = p
