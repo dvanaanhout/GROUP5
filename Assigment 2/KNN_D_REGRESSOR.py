@@ -34,8 +34,7 @@ class KNN_D:
             return self.calc_distance_chebyshev(to_pred_values)
         elif self.dcalc == 'minkowski':
             return self.calc_distance_minkowski(to_pred_values)
-        elif self.dcalc == 'cosine':
-            return self.calc_distance_cosine(to_pred_values)
+
     
     def calc_distance_euclidean(self, to_pred_values):
         diff = abs(self.X - to_pred_values)
@@ -55,11 +54,3 @@ class KNN_D:
         distances = np.power(np.sum(np.power(diff, self.p), axis=1), 1/self.p)
         return distances
 
-    def calc_distance_cosine(self, to_pred_values):   
-        dot_product = np.dot(self.X, to_pred_values)
-        norm_X = np.linalg.norm(self.X, axis=1)
-        norm_to_pred = np.linalg.norm(to_pred_values)
-        cosine_similarity = dot_product / (norm_X * norm_to_pred)
-        cosine_distance = 1 - cosine_similarity
-        cosine_distance = np.nan_to_num(cosine_distance)
-        return cosine_distance
